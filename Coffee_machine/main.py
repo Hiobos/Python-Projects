@@ -3,6 +3,7 @@ from menu import *
 money = 0
 machine = True
 
+
 def coffee_make():
     global machine
     global money
