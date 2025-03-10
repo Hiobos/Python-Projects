@@ -12,5 +12,17 @@ question_data = [
     {"text": "Google was originally called 'Backrub'.", "answer": "True"},
     {"text": "Buzz Aldrin's mother's maiden name was 'Moon'.", "answer": "True"},
     {"text": "No piece of square dry paper can be folded in half more than 7 times.", "answer": "False"},
-    {"text": "A few ounces of chocolate can to kill a small dog.", "answer": "True"}
+    {"text": "A few ounces of chocolate can to kill a small dog.", "answer": "True"},
+    {"text": "The Great Wall of China is visible from space with the naked eye.", "answer": "False"},
+    {"text": "Bananas are berries, but strawberries are not.", "answer": "True"},
+    {"text": "There are more stars in the universe than grains of sand on Earth.", "answer": "True"},
+    {"text": "Octopuses have three hearts.", "answer": "True"},
+    {"text": "Lightning never strikes the same place twice.", "answer": "False"},
+    {"text": "Water makes up about 70% of the human body.", "answer": "True"},
+    {"text": "Sharks are mammals.", "answer": "False"},
+    {"text": "Venus is the hottest planet in the Solar System.", "answer": "True"},
+    {"text": "Humans share approximately 50% of their DNA with bananas.", "answer": "True"},
+    {"text": "Goldfish only have a three-second memory.", "answer": "False"},
+    {"text": "Mount Everest is the tallest mountain in the world.", "answer": "True"},
+    {"text": "A day on Mars is longer than a day on Earth.", "answer": "True"}
 ]
