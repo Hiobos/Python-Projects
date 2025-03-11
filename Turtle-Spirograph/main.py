@@ -16,7 +16,7 @@ def rand_color():
     color = (r, g, b)
     return color
 
-for _ in range(180):
+for _ in range(72):
     turt.color(rand_color())
     turt.circle(200)
     current_position = turt.heading()
