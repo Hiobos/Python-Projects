@@ -19,9 +19,9 @@ for turtle_index in range(0, 6):
     new_turtle.goto(-230, positions[turtle_index])
     turtles.append(new_turtle)
 
+
 if bet:
     race_on = True
-
 
 
 while race_on:
@@ -36,9 +36,5 @@ while race_on:
                 print("Better luck next time!")
             race_on = False
     
-
-
-
-
 
 screen.exitonclick()
