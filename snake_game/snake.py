@@ -23,7 +23,7 @@ class Snake:
         snake_chunk.hideturtle()
         snake_chunk.penup()
         self.snake_body.append(snake_chunk)
-        #snake_chunk.color('green')
+        snake_chunk.color('green')
         snake_chunk.showturtle()
 
     def move(self):

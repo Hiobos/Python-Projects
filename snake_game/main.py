@@ -2,6 +2,7 @@ from turtle import Screen
 import time
 from snake import Snake
 from food import Food
+from score import Score
 
 screen = Screen()
 screen.setup(1000, 1000)
@@ -16,8 +17,10 @@ screen.onkeypress(key='Right', fun=snake.move_right)
 screen.onkeypress(key='Up', fun=snake.move_up)
 screen.onkeypress(key='Down', fun=snake.move_down)
 
+score = Score()
 food = Food()
 
+passed_score = 0
 game = True
 while game:
     screen.update()
@@ -26,10 +29,10 @@ while game:
     snake.move()
 
     if snake.head.distance(food) < 15:
-        screen.bgcolor('purple')
+        passed_score += 1
         snake.add_chunk()
         food.new_food()
-    snake.snake_body[-1].color('green')
+        score.update_score(passed_score)
 
 
 
