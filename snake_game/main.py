@@ -20,7 +20,6 @@ screen.onkeypress(key='Down', fun=snake.move_down)
 score = Score()
 food = Food()
 
-passed_score = 0
 game = True
 while game:
     screen.update()
@@ -29,11 +28,20 @@ while game:
     snake.move()
 
     if snake.head.distance(food) < 15:
-        passed_score += 1
+        #passed_score += 1
         snake.add_chunk()
         food.new_food()
-        score.update_score(passed_score)
+        score.update_score()
 
+    if snake.head.xcor() > 480 or snake.head.xcor() < -480 or snake.head.ycor() > 480 or snake.head.ycor() < -480:
+        score.game_over()
+        game = False
+
+
+    for i in range(1, len(snake.snake_body)):
+        if snake.head.distance(snake.snake_body[i]) < 10:
+            score.game_over()
+            game = False
 
 
 

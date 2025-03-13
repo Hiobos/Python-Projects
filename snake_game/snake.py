@@ -22,6 +22,7 @@ class Snake:
         snake_chunk = Turtle(shape='square')
         snake_chunk.hideturtle()
         snake_chunk.penup()
+        snake_chunk.goto(self.snake_body[-1].position())
         self.snake_body.append(snake_chunk)
         snake_chunk.color('green')
         snake_chunk.showturtle()
