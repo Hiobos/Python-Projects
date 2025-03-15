@@ -38,16 +38,14 @@ game = True
 
 while game:
     screen.update()
-    score.score_one_turtle()
-    score.score_two_turtle()
+
+    score.score_one_update()
+    score.score_two_update()
     time.sleep(0.0008)
     paddle.paddle_movement()
-    ball.ball_move(paddle.paddles[1])
-    ball.ball_move(paddle.paddles[0])
+    ball.ball_move(paddle.paddles)
 
     ball.ball_reset(score)
-
-
 
 
 

@@ -6,6 +6,19 @@ class Score(Turtle):
         self.hideturtle()
         self.score_player_one = 0
         self.score_player_two = 0
+        #Turtle for first player score
+        self.score1_turtle = Turtle()
+        self.score1_turtle.clear()
+        self.score1_turtle.color('white')
+        self.score1_turtle.hideturtle()
+        self.score1_turtle.penup()
+        self.score1_turtle.goto(-50, 250)
+        #Turtle for second player score
+        self.score2_turtle = Turtle()
+        self.score2_turtle.color('white')
+        self.score2_turtle.hideturtle()
+        self.score2_turtle.penup()
+        self.score2_turtle.goto(50, 250)
 
     def dotted_line(self):
         self.penup()
@@ -19,24 +32,13 @@ class Score(Turtle):
             self.penup()
             self.forward(20)
 
-    def score_one_turtle(self):
-        score1_turtle = Turtle()
-        score1_turtle.clear()
-        score1_turtle.color('white')
-        score1_turtle.hideturtle()
-        score1_turtle.penup()
-        score1_turtle.goto(-50, 250)
-        score1_turtle.clear()
-        score1_turtle.write(self.score_player_one, move=False, align="center", font=("Verdana", 30, "normal"))
+    def score_one_update(self):
+        self.score1_turtle.clear()
+        self.score1_turtle.write(self.score_player_one, move=False, align="center", font=("Verdana", 30, "normal"))
 
-    def score_two_turtle(self):
-        score2_turtle = Turtle()
-        score2_turtle.color('white')
-        score2_turtle.hideturtle()
-        score2_turtle.penup()
-        score2_turtle.goto(50, 250)
-        score2_turtle.clear()
-        score2_turtle.write(self.score_player_two, move=False, align="center", font=("Verdana", 30, "normal"))
+    def score_two_update(self):
+        self.score2_turtle.clear()
+        self.score2_turtle.write(self.score_player_two, move=False, align="center", font=("Verdana", 30, "normal"))
 
     def raise_player_one(self):
         self.score_player_one += 1

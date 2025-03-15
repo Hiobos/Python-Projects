@@ -2,8 +2,6 @@ from turtle import Turtle
 
 POSITIONS = [(-560, 0), (560, 0)]
 
-
-
 class Paddle(Turtle):
     def __init__(self):
         super().__init__()
