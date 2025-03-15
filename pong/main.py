@@ -41,7 +41,7 @@ while game:
 
     score.score_one_update()
     score.score_two_update()
-    time.sleep(0.0008)
+    time.sleep(0.0003)
     paddle.paddle_movement()
     ball.ball_move(paddle.paddles)
 

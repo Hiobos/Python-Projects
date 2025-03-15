@@ -12,8 +12,8 @@ class Ball(Turtle):
         rand_y = random.randint(-2, 2)
         ball.goto(rand_x, rand_y)
         self.ball = ball
-        self.ball.dx = 0.8
-        self.ball.dy = 0.8
+        self.ball.dx = 1
+        self.ball.dy = 1
 
     def ball_move(self, paddle):
         ball = self.ball
@@ -32,8 +32,10 @@ class Ball(Turtle):
         #bouncing from paddles
         if ball.xcor() > 550 and ball.xcor() < 560 and ball.ycor() < paddle[1].ycor() + 40 and ball.ycor() > paddle[1].ycor() -40:
             self.ball.dx *= -1
+            print("prawy")
 
-        if ball.xcor() > -550 and ball.xcor() < -560 and ball.ycor() < paddle[0].ycor() + 40 and ball.ycor() > paddle[0].ycor() -40:
+        if ball.xcor() < -550 and ball.xcor() > -560 and ball.ycor() < paddle[0].ycor() + 40 and ball.ycor() > paddle[0].ycor() -40:
+            print("lewy")
             self.ball.dx *= -1
 
     def ball_reset(self, score):
