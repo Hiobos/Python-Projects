@@ -22,7 +22,7 @@ class Paddle(Turtle):
             paddle.hideturtle()
             paddle.goto(index)
             paddle.shape('square')
-            paddle.shapesize(stretch_wid=1, stretch_len=4)
+            paddle.shapesize(stretch_wid=1, stretch_len=5)
             paddle.showturtle()
             self.paddles.append(paddle)
 
@@ -52,13 +52,13 @@ class Paddle(Turtle):
 
     def paddle_movement(self):
         # movement paddle 1
-        if self.paddle_1_up and self.paddles[0].ycor() < 300:
+        if self.paddle_1_up and self.paddles[0].ycor() < 260:
             self.paddles[0].sety(self.paddles[0].ycor() + 5)
-        if self.paddle_1_down and self.paddles[0].ycor() > -300:
+        if self.paddle_1_down and self.paddles[0].ycor() > -260:
             self.paddles[0].sety(self.paddles[0].ycor() - 5)
 
         # movement paddle 2
-        if self.paddle_2_up and self.paddles[1].ycor() < 300:
+        if self.paddle_2_up and self.paddles[1].ycor() < 260:
             self.paddles[1].sety(self.paddles[1].ycor() + 5)
-        if self.paddle_2_down and self.paddles[1].ycor() > -300:
+        if self.paddle_2_down and self.paddles[1].ycor() > -260:
             self.paddles[1].sety(self.paddles[1].ycor() - 5)
