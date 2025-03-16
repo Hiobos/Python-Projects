@@ -32,10 +32,8 @@ class Ball(Turtle):
         #bouncing from paddles
         if ball.xcor() > 550 and ball.xcor() < 560 and ball.ycor() < paddle[1].ycor() + 40 and ball.ycor() > paddle[1].ycor() -40:
             self.ball.dx *= -1
-            print("prawy")
 
         if ball.xcor() < -550 and ball.xcor() > -560 and ball.ycor() < paddle[0].ycor() + 40 and ball.ycor() > paddle[0].ycor() -40:
-            print("lewy")
             self.ball.dx *= -1
 
     def ball_reset(self, score):
