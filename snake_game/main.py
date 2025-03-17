@@ -34,6 +34,7 @@ while game:
         #passed_score += 1
         snake.add_chunk()
         food.new_food()
+        score.update_and_add_score()
         score.update_score()
 
     #detects collision with walls

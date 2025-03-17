@@ -12,6 +12,10 @@ class Score(Turtle):
         self.hideturtle()
 
     def update_score(self):
+        self.clear()
+        self.write(f"Current Score: {self.score} High Score {self.high_score}", move=False, align="center", font=('verdana', 20, 'normal'))
+
+    def update_and_add_score(self):
         self.score += 1
         self.clear()
         self.write(f"Current Score: {self.score} High Score {self.high_score}", move=False, align="center", font=('verdana', 20, 'normal'))
