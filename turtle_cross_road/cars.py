@@ -3,13 +3,11 @@ import random
 
 COLORS = ['orange', 'red', 'blue', 'purple', 'green', 'yellow']
 
-cars = []
-
 class CarManager:
     def __init__(self):
         super().__init__()
         self.cars = []
-
+        self.speed = 10
 
     def generate_cars(self):
         if len(self.cars) < 20:
@@ -23,7 +21,7 @@ class CarManager:
             car.goto(x_axis, y_axis)
             self.cars.append(car)
         for car in self.cars:
-            car.forward(10)
+            car.forward(self.speed)
             if car.position()[0] < -300:
                 y_axis = random.randrange(-260, 280, 20)
                 car.goto(300, y_axis)
@@ -32,3 +30,6 @@ class CarManager:
         for car in self.cars:
             car.hideturtle()
         self.cars.clear()
+
+    def up_speed(self):
+        self.up_speed += 1

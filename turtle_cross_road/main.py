@@ -23,8 +23,6 @@ screen.onkeypress(key='Down', fun=player.player_move_backwards)
 screen.onkeypress(key='r', fun=scoreboard.update_score)
 screen.onkeypress(key='c', fun=car_manager.clean_cars)
 
-
-
 #main loop
 game = True
 while game:
@@ -37,6 +35,7 @@ while game:
 
     if player.player_check_score(car_manager.cars):
         scoreboard.update_score()
+        #car_manager.up_speed()
         car_manager.clean_cars()
     else:
         pass

@@ -27,6 +27,13 @@ class Snake:
         snake_chunk.color('green')
         snake_chunk.showturtle()
 
+    def reset(self):
+        for chunk in self.snake_body:
+            chunk.goto(2000, 2000)
+        self.snake_body.clear()
+        self.create_snake()
+        self.head = self.snake_body[0]
+
     def move(self):
         for chunk in range(len(self.snake_body) -1, 0, -1):
             new_x = self.snake_body[chunk - 1].xcor()

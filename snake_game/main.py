@@ -38,15 +38,15 @@ while game:
 
     #detects collision with walls
     if snake.head.xcor() > 490 or snake.head.xcor() < -490 or snake.head.ycor() > 490 or snake.head.ycor() < -490:
-        score.game_over()
-        game = False
+        score.reset()
+        snake.reset()
 
 
     #detects collision of snake head with its body
     for i in snake.snake_body[1:]:
         if snake.head.distance(i) < 10:
-            score.game_over()
-            game = False
+            score.reset()
+            snake.reset()
 
 
 
