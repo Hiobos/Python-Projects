@@ -1,5 +1,6 @@
 import turtle
 from game_logic import GameLogic
+import string
 
 #screen setup with image of the states
 screen = turtle.Screen()
@@ -9,7 +10,6 @@ img = "blank_states_img.gif"
 screen.addshape(img)
 turtle.shape(img)
 
-
 #main game loop
 game = True
 
@@ -17,9 +17,13 @@ gl = GameLogic()
 print(len(gl.states_right))
 
 while game:
-    next_state = turtle.textinput(title=f"{50-len(gl.states_right)}/50 State name", prompt="What's the next state?:  ")
-    gl.check(next_state)
+    next_state = turtle.textinput(title=f"{len(gl.states_right)}/50 State name", prompt="What's the next state?:  ")
+    gl.check(string.capwords(next_state))
+    if len(gl.states_right) == 50:
+        game = False
+        print("U won!")
 
 
 
 turtle.mainloop()
+screen.exitonclick()

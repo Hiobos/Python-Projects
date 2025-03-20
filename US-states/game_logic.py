@@ -17,7 +17,7 @@ class GameLogic(Turtle):
 
     def check(self, next_state):
         for state in self.states.state:
-            if next_state == state:
+            if next_state.title() == state:
                 self.state_name = next_state
                 self.states_right.append(next_state)
 
