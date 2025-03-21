@@ -14,7 +14,6 @@ turtle.shape(img)
 game = True
 
 gl = GameLogic()
-print(len(gl.states_right))
 
 while game:
     next_state = turtle.textinput(title=f"{len(gl.states_right)}/50 State name", prompt="What's the next state?:  ")
@@ -22,8 +21,6 @@ while game:
     if len(gl.states_right) == 50:
         game = False
         print("U won!")
-
-
-
-turtle.mainloop()
-screen.exitonclick()
+    elif next_state.lower() == "exit":
+        game = False
+        gl.generate_csv()
