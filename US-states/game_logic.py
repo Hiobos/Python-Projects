@@ -32,6 +32,6 @@ class GameLogic(Turtle):
         all_states = deque(self.states.state.to_list())
         all_states.appendleft("States you've missed:")
         right_states = self.states_right
-        states_wrong = [x for x in all_states if x not in right_states]
+        states_wrong = [state for state in all_states if state not in right_states]
         df = pd.DataFrame(states_wrong)
         df.to_csv("States_wrong.csv")
