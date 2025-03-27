@@ -13,8 +13,7 @@ timer_running = None
 def text_update(timer):
     canvas.itemconfig(canvas_text, text=timer)
 
-def countdown(t, status):
-    timer_label['text'] = status
+def countdown(t):
     global timer_running
     if t>= 0:
         mins, secs = divmod(t, 60)
@@ -24,14 +23,24 @@ def countdown(t, status):
         timer_running = window.after(1000, countdown, t-1)
 
 def game_logic():
-    countdown(25, "WORK")
-    # countdown(5, "BREAK")
-    # countdown(25, "WORK")
-    # countdown(5, "BREAK")
-    # countdown(25, "WORK")
-    # countdown(5, "BREAK")
-    # countdown(25, "WORK")
-    # countdown(15, "BREAK") #longbreak
+    timer_label['text'] = "WORK"
+    countdown(25)
+    #for some reason all countdowns goes at the same time
+
+    # timer_label['text'] = "BREAK"
+    # countdown(5)
+    # timer_label['text'] = "WORK"
+    # countdown(25)
+    # timer_label['text'] = "BREAK"
+    # countdown(5)
+    # timer_label['text'] = "WORK"
+    # countdown(25)
+    # timer_label['text'] = "BREAK"
+    # countdown(5)
+    # timer_label['text'] = "WORK"
+    # countdown(25)
+    # timer_label['text'] = "BREAK"
+    # countdown(15) #longbreak
 
 
 
