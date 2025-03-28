@@ -4,44 +4,51 @@ import time
 
 colors = {'PINK': "#e2979c", 'RED': "#e7305b", 'GREEN': "#9bdeac", 'YELLOW': "#f7f5dd"}
 FONT_NAME = "Courier"
-WORK_MIN = 25
-SHORT_BREAK_MIN = 5
-LONG_BREAK_MIN = 20
+WORK_MIN, SHORT_BREAK_MIN, LONG_BREAK_MIN = 25 * 60, 5 * 60, 20 * 60
 timer_running = None
-
+reps = 0
+run = True
 #---------------functions
 def text_update(timer):
     canvas.itemconfig(canvas_text, text=timer)
 
 def countdown(t):
-    global timer_running
-    if t>= 0:
-        mins, secs = divmod(t, 60)
-        timer = '{:02d}:{:02d}'.format(mins, secs)
-        print(timer)
-        text_update(timer)
-        timer_running = window.after(1000, countdown, t-1)
+    if run:
+        global timer_running
+        if t>= 0:
+            mins, secs = divmod(t, 60)
+            timer = '{:02d}:{:02d}'.format(mins, secs)
+            print(timer)
+            text_update(timer)
+            timer_running = window.after(1000, countdown, t-1)
+        else:
+            start_timer()
+            if reps % 2 == 0:
+                checks_label['text'] += '✓'
 
-def game_logic():
-    timer_label['text'] = "WORK"
-    countdown(25)
-    #for some reason all countdowns goes at the same time
+def start_timer():
+    global run
+    global reps
+    reps += 1
+    run = True
 
-    # timer_label['text'] = "BREAK"
-    # countdown(5)
-    # timer_label['text'] = "WORK"
-    # countdown(25)
-    # timer_label['text'] = "BREAK"
-    # countdown(5)
-    # timer_label['text'] = "WORK"
-    # countdown(25)
-    # timer_label['text'] = "BREAK"
-    # countdown(5)
-    # timer_label['text'] = "WORK"
-    # countdown(25)
-    # timer_label['text'] = "BREAK"
-    # countdown(15) #longbreak
+    if reps == 8:
+        timer_label['text'] = "BREAK"
+        countdown(LONG_BREAK_MIN)
+    elif reps % 2 == 0:
+        timer_label['text'] = "BREAK"
+        countdown(SHORT_BREAK_MIN)
+    else:
+        timer_label['text'] = "WORK"
+        countdown(WORK_MIN)
 
+def stop_app():
+    global run
+    global reps
+    run = False
+    reps = 0
+    timer_label['text'] = "TIMER"
+    canvas.itemconfig(canvas_text, text='00:00')
 
 
 window = Tk()
@@ -59,11 +66,11 @@ canvas_text = canvas.create_text(100, 135, text="00:00", font=(FONT_NAME, 32, 'b
 timer_label = Label(text="Timer", font=("Times New Roma", 40, 'bold'), bg=colors['YELLOW'], fg=colors['GREEN'])
 
 #checks label
-checks_label = Label(text='✓', fg=colors['GREEN'], bg=colors['YELLOW'], font=("Times New Roma", 20, 'bold'))
+checks_label = Label(fg=colors['GREEN'], bg=colors['YELLOW'], font=("Times New Roma", 20, 'bold'))
 
 #start button
-button_start = Button(text="Start", command=game_logic)
-button_stop = Button(text="Stop")
+button_start = Button(text="Start", command=start_timer)
+button_stop = Button(text="Stop", command=stop_app)
 
 #UI Placement
 timer_label.grid(row=0, column=1)
