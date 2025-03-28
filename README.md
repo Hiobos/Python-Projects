@@ -1,3 +1,1 @@
-Writing projects, some from courses on Udemy, youtube, others from what i came up with :)
-
-For learning purposes
+<h2>Projects mainly from courses like Udemy '100 days of code'.<br> learning new libraries, frameworks, etc</h2>
