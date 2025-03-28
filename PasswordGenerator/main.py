@@ -1,7 +1,13 @@
 from tkinter import *
 import random
 
+from click import command
+
+from save_to_file import Save
+
 FONT = ('Arial', 14)
+
+save = Save()
 
 #main window
 window = Tk()
@@ -18,7 +24,7 @@ website_label = Label(text='Website: ', font=FONT, bg='white')
 emailuser_label = Label(text='Email/Username: ', font=FONT, bg='white')
 password_label = Label(text='Password: ', font=FONT, bg='white')
 generate_button = Button(text='Generate', bg='white')
-add_button = Button(text='Add', bg='white')
+add_button = Button(text='Add', bg='white', command=lambda: save.to_file(website_input.get(), emailuser_input.get(), password_input.get()))
 
 #--Inputs
 website_input = Entry()
