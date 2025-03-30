@@ -32,4 +32,6 @@ class Generate:
 
         self.password_list = ''.join(self.password_list)
         pyperclip.copy(self.password_list)
-        return self.password_list
+        pw = self.password_list
+        self.password_list = []
+        return pw

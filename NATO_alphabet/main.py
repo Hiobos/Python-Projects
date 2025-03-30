@@ -7,11 +7,18 @@ with open('nato_phonetic_alphabet.csv') as f:
     nato_alphabet.pop(0)
     nato_dict = {item[0]:item[1] for item in nato_alphabet}
 
-#name input that converts name into uppercase and slices it into list
-name = [*input("Enter name: ").upper()]
+def generate():
+    #name input that converts name into uppercase and slices it into list
+    name = [*input("Enter name: ").upper()]
 
-#creating list with items that corresponds to name letters
-name_letters = [nato_dict[letter] for letter in name]
+    #creating list with items that corresponds to name letters
+    try:
+        name_letters = [nato_dict[letter] for letter in name]
+    except:
+        print("Only letters of the alphabet.")
+        generate()
+    else:
+        #printing the result
+        print(name_letters)
 
-#printing the result
-print(name_letters)
+generate()

@@ -1,13 +1,11 @@
 from tkinter import *
 import tkinter as tk
-
-from click import command
 from pwgenerate import Generate
 from save_to_file import Save
 
 FONT = ('Arial', 14)
-
 save = Save()
+g_password = Generate()
 
 #functions---------------------------------------------------------------------
 #popup
@@ -41,12 +39,9 @@ def ok_popup():
         b.grid(row=1, column=0)
         b = tk.Button(win, text="No", command=wrong_info)
         b.grid(row=2, column=0)
-    else:
-        print('wrong')
 
 
 def generate():
-    g_password = Generate()
     generated_password = g_password.password()
     password_text.set(generated_password)
 
@@ -67,6 +62,7 @@ emailuser_label = Label(text='Email/Username: ', font=FONT, bg='white')
 password_label = Label(text='Password: ', font=FONT, bg='white')
 generate_button = Button(text='Generate', bg='white', command=generate)
 add_button = Button(text='Add', bg='white', command=ok_popup, activebackground='blue')
+search_button = Button(text='Search', command=lambda: save.search())
 
 
 #--Inputs
@@ -80,7 +76,7 @@ password_input = Entry(bg='lightgray', textvariable=password_text)
 canvas.grid(row=0, column=1)
 
 website_label.grid(row=1, column=0)
-website_input.grid(row=1, column=1, columnspan=2, sticky='nsew', padx=5, pady=5)
+website_input.grid(row=1, column=1, sticky='nsew', padx=5, pady=5)
 website_input.focus()
 
 emailuser_label.grid(row=2, column=0)
@@ -91,6 +87,8 @@ password_input.grid(row=3, column=1, sticky='nsew', padx=5, pady=5)
 
 generate_button.grid(row=3, column=2, sticky='nsew', padx=5, pady=5)
 add_button.grid(row=4, column=1, columnspan=2, sticky='nsew', padx=5, pady=5)
+search_button.grid(row=1, column=2, sticky='nsew', padx=5, pady=5)
+
 
 
 window.mainloop()
