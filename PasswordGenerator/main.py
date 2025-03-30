@@ -1,9 +1,8 @@
 from tkinter import *
 import tkinter as tk
-import random
 
 from click import command
-
+from pwgenerate import Generate
 from save_to_file import Save
 
 FONT = ('Arial', 14)
@@ -12,19 +11,44 @@ save = Save()
 
 #functions---------------------------------------------------------------------
 #popup
-def popup_bonus():
-    win = tk.Toplevel()
-    win.wm_title("Window")
+def ok_popup():
+    website = website_input.get()
+    email = emailuser_input.get()
+    password = password_input.get()
 
-    l = tk.Label(win, text="Are you sure that provided information is right?")
-    l.grid(row=0, column=0)
+    if len(website) > 3 and len(email) > 5 and len(password) > 7:
+        win = tk.Toplevel()
+        win.wm_title("Window")
 
-    def save_and_close():
-        save.to_file(website_input.get(), emailuser_input.get(), password_input.get())
-        win.destroy()  # Zamknięcie okna popup
+        l = tk.Label(win, text=f"Are those information correct?\n"
+                               f"website: {website}\n"
+                               f"email: {email}\n"
+                               f"password: {password}")
+        l.grid(row=0, column=0)
 
-    b = tk.Button(win, text="Okay", command=save_and_close)
-    b.grid(row=1, column=0)
+        def save_and_close():
+            save.to_file(website, email, password)
+            win.destroy()  # Zamknięcie okna popup
+            website_input.delete(0, tk.END)
+            emailuser_input.delete(0, tk.END)
+            password_input.delete(0, tk.END)
+            website_input.focus()
+
+        def wrong_info():
+            win.destroy()
+
+        b = tk.Button(win, text="Yes", command=save_and_close)
+        b.grid(row=1, column=0)
+        b = tk.Button(win, text="No", command=wrong_info)
+        b.grid(row=2, column=0)
+    else:
+        print('wrong')
+
+
+def generate():
+    g_password = Generate()
+    generated_password = g_password.password()
+    password_text.set(generated_password)
 
 
 #main window
@@ -41,19 +65,23 @@ canvas.create_image(140, 90, image=lock_img)
 website_label = Label(text='Website: ', font=FONT, bg='white')
 emailuser_label = Label(text='Email/Username: ', font=FONT, bg='white')
 password_label = Label(text='Password: ', font=FONT, bg='white')
-generate_button = Button(text='Generate', bg='white')
-add_button = Button(text='Add', bg='white', command=popup_bonus)
+generate_button = Button(text='Generate', bg='white', command=generate)
+add_button = Button(text='Add', bg='white', command=ok_popup, activebackground='blue')
+
 
 #--Inputs
-website_input = Entry()
-emailuser_input = Entry()
-password_input = Entry()
+website_input = Entry(bg='lightgray')
+emailuser_input = Entry(bg='lightgray')
+password_text = tk.StringVar()
+password_input = Entry(bg='lightgray', textvariable=password_text)
+
 
 #-----UI-----------------------------------------
 canvas.grid(row=0, column=1)
 
 website_label.grid(row=1, column=0)
 website_input.grid(row=1, column=1, columnspan=2, sticky='nsew', padx=5, pady=5)
+website_input.focus()
 
 emailuser_label.grid(row=2, column=0)
 emailuser_input.grid(row=2, column=1, columnspan=2, sticky='nsew', padx=5, pady=5)
