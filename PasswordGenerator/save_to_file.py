@@ -30,7 +30,11 @@ class Save:
             with open('passwords.json', "w") as file:
                 json.dump(data, file, indent=4)
 
-    def search(self):
+    def search(self, website):
         with open('passwords.json', "r") as file:
             data = json.load(file)
-            print(data)
+            try:
+                if data[website]:
+                    return f"Email: {data[website]['email']}\nPassword: {data[website]['password']}"
+            except KeyError:
+                return f"No results for: {website}"

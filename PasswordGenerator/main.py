@@ -45,6 +45,19 @@ def generate():
     generated_password = g_password.password()
     password_text.set(generated_password)
 
+def search():
+    result = save.search(website_input.get())
+    win = tk.Toplevel()
+    win.wm_title("Window")
+
+    l = tk.Label(win, text=f"{result}")
+    l.grid(row=0, column=0)
+
+    def close():
+        win.destroy()
+
+    b = tk.Button(win, text="Close", command=close)
+    b.grid(row=1, column=0)
 
 #main window
 window = Tk()
@@ -62,7 +75,7 @@ emailuser_label = Label(text='Email/Username: ', font=FONT, bg='white')
 password_label = Label(text='Password: ', font=FONT, bg='white')
 generate_button = Button(text='Generate', bg='white', command=generate)
 add_button = Button(text='Add', bg='white', command=ok_popup, activebackground='blue')
-search_button = Button(text='Search', command=lambda: save.search())
+search_button = Button(text='Search', command=search)
 
 
 #--Inputs
