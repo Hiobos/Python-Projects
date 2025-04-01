@@ -16,7 +16,7 @@ canvas = Canvas(width=800, height=526, bg=BG_COLOR, highlightthickness=0)
 
 #-----------FUNCTIONS---------------
 def open_file(): #checks if file with wrong words exists
-    global should_remove
+    global should_remove, foreign_lang, native_lang
     try:
         data_df = pd.read_csv('data/wrong_words.csv')
         if data_df.empty or data_df.shape[1] == 0:
@@ -25,6 +25,12 @@ def open_file(): #checks if file with wrong words exists
     except (FileNotFoundError, ValueError, pd.errors.EmptyDataError):
         data_df = pd.read_csv('data/words.csv')
         should_remove = False
+
+    columns = list(data_df.columns)
+    if len(columns) < 2:
+        raise ValueError("The CSV file must have 2 columns!")
+
+    foreign_lang, native_lang = columns[0], columns[1]
     return data_df
 
 
@@ -45,12 +51,12 @@ def new_word(state):
 
     try:
         if state == 'wrong' and random_pick != '':
-            to_add = [data_df.iloc[random_pick]['French'], data_df.iloc[random_pick]['English']]
+            to_add = [data_df.iloc[random_pick][foreign_lang], data_df.iloc[random_pick][native_lang]]
             if to_add not in wrong_words:
                 wrong_words.append(to_add)
         elif state == 'right' and random_pick != '':
             if should_remove:
-                to_remove = [data_df.iloc[random_pick]['French'], data_df.iloc[random_pick]['English']]
+                to_remove = [data_df.iloc[random_pick][foreign_lang], data_df.iloc[random_pick][native_lang]]
                 if to_remove in wrong_words:
                     wrong_words.remove(to_remove)
 
@@ -66,15 +72,15 @@ def new_word(state):
     #picking random word
     data_df = open_file()
     random_pick = random.randint(0, len(data_df) - 1)
-    foreign_word = data_df['French'][random_pick]
-    english_word = data_df['English'][random_pick]
+    foreign_word = data_df[foreign_lang][random_pick]
+    english_word = data_df[native_lang][random_pick]
 
     #updating canvas with english words
     update_to_foreign(foreign_word)
     window.after(3000, lambda: [update_to_english(english_word), buttons_state(NORMAL)])
 
     if len(wrong_words) > 0:
-        wrong_df = pd.DataFrame(wrong_words, columns=['French', 'English'])
+        wrong_df = pd.DataFrame(wrong_words, columns=[foreign_lang, native_lang])
         wrong_df.to_csv('data/wrong_words.csv', index=False, header=True)
 
 
@@ -82,13 +88,13 @@ def new_word(state):
 def update_to_foreign(foreign_word):
     canvas.itemconfig(flashcard, image=flashcard_front)
     canvas.itemconfig(word, text=foreign_word, fill='black')
-    canvas.itemconfig(language, text='French', fill='black')
+    canvas.itemconfig(language, text=foreign_lang, fill='black')
 
 
 def update_to_english(english_word):
     canvas.itemconfig(flashcard, image=flashcard_back)
     canvas.itemconfig(word, text=english_word, fill='white')
-    canvas.itemconfig(language, text='English', fill='white')
+    canvas.itemconfig(language, text=native_lang, fill='white')
 
 #------------IMAGES-----------------
 flashcard_front = PhotoImage(file='images/card_front.png', width=800, height=526)
