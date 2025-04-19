@@ -6,7 +6,17 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 
 driver = webdriver.Chrome(options=chrome_options)
-driver.get('https://store.steampowered.com/')
+driver.get('https://www.python.org/')
 
-element_menu = driver.find_element(By.CLASS_NAME, 'header_installsteam_btn_content')
-element_menu.click()
+event_times = driver.find_elements(By.CSS_SELECTOR, '.event-widget time')
+event_names = driver.find_elements(By.CSS_SELECTOR, '.event-widget a')
+
+for time in event_times:
+    print(time.text)
+
+for name in event_names:
+    if name.text != 'More':
+        print(name.text)
+
+
+driver.quit()
