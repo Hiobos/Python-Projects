@@ -1,0 +1,47 @@
+main.py:11:SB
+--------------------------------------------------------------------
+Last Page: https://csgo-skins.com/
+ Duration: 2.94s
+  Browser: Chrome 135.0.7049.84
+   Driver: chromedriver 135.0.7049.97
+Timestamp: 1745400262  (Unix Timestamp)
+     Date: Wednesday, 23 April 2025
+     Time: 11:24:22 AM  (CEST, UTC+02:00)
+--------------------------------------------------------------------
+Traceback:
+  Traceback (most recent call last):
+  File "/home/hiob/Documents/GitHub/Python-Projects/csgoskinsbot/main.py", line 14, in <module>
+    sb.uc_gui_click_captcha()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/hiob/Documents/GitHub/Python-Projects/.venv/lib/python3.13/site-packages/seleniumbase/core/browser_launcher.py", line 5450, in <lambda>
+    lambda *args, **kwargs: uc_gui_click_captcha(
+                            ~~~~~~~~~~~~~~~~~~~~^
+        driver, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/hiob/Documents/GitHub/Python-Projects/.venv/lib/python3.13/site-packages/seleniumbase/core/browser_launcher.py", line 1493, in uc_gui_click_captcha
+    _uc_gui_click_captcha(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        driver,
+        ^^^^^^^
+    ...<3 lines>...
+        ctype=None,
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/home/hiob/Documents/GitHub/Python-Projects/.venv/lib/python3.13/site-packages/seleniumbase/core/browser_launcher.py", line 1176, in _uc_gui_click_captcha
+    import pyautogui
+  File "/home/hiob/Documents/GitHub/Python-Projects/.venv/lib/python3.13/site-packages/pyautogui/__init__.py", line 246, in <module>
+    import mouseinfo
+  File "/home/hiob/Documents/GitHub/Python-Projects/.venv/lib/python3.13/site-packages/mouseinfo/__init__.py", line 223, in <module>
+    _display = Display(os.environ['DISPLAY'])
+  File "/home/hiob/Documents/GitHub/Python-Projects/.venv/lib/python3.13/site-packages/Xlib/display.py", line 80, in __init__
+    self.display = _BaseDisplay(display)
+                   ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/hiob/Documents/GitHub/Python-Projects/.venv/lib/python3.13/site-packages/Xlib/display.py", line 62, in __init__
+    display.Display.__init__(*(self, ) + args, **keys)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hiob/Documents/GitHub/Python-Projects/.venv/lib/python3.13/site-packages/Xlib/protocol/display.py", line 129, in __init__
+    raise error.DisplayConnectionError(self.display_name, r.reason)
+Xlib.error.DisplayConnectionError: Can't connect to display ":0": b'Authorization required, but no authorization protocol specified\n'

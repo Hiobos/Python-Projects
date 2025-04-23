@@ -1,11 +1,18 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-import time
-import undetected_chromedriver as uc
+from seleniumbase import Driver
+from seleniumbase import SB
 
 #keeping web browser open
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_experimental_option("detach", True)
+# driver = Driver(uc=True)
+# url = 'https://csgo-skins.com/'
+# driver.
 
-driver = uc.Chrome(options=chrome_options)
-driver.get('https://csgo-skins.com/')
+
+
+with SB(uc=True, test=True, locale="en") as sb:
+    url = "https://csgo-skins.com/"
+    sb.activate_cdp_mode(url)
+    sb.uc_gui_click_captcha()
+    sb.sleep(60)
+
+
+
